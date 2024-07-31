@@ -75,11 +75,23 @@ public class Main{
 
         for(User user : people){
             if(user.getId() == accountNum){
-                System.out.println("yes");
+                System.out.print("Enter amount to deposit : ");
+                float amount = input.nextFloat();
+                input.nextLine();
+
+                if(amount > 0){
+                    user.deposit(amount);
+                    user.newBal();
+                }else{
+                    System.out.println("Please enter a positive number.");
+                    displayOptions();
+                }
+            }else{
+                System.out.println("Invalid Account Number. Please Try Again.\n");
+                System.out.println("----------------------------------------------");
+                displayOptions();
             }
         }
-
-
         System.out.println("----------------------------------------------");
         System.out.println("\n");
         displayOptions();
@@ -99,7 +111,7 @@ public class Main{
         displayOptions();
     }
 
-    public static int randomAccNum(){
+    public static int randomAccNum(){//Generate random 6 digit number (100000 - 999999)
         Random rand = new Random();
         return rand.nextInt((999999 - 100000) + 1) + 100000;
     }
