@@ -83,7 +83,8 @@ public class Main{
                     user.deposit(amount);
                     user.newBal();
                 }else{
-                    System.out.println("Please enter a positive number.");
+                    System.out.println("Please enter a positive number.\n");
+                    System.out.println("----------------------------------------------");
                     displayOptions();
                 }
             }else{
@@ -97,14 +98,45 @@ public class Main{
         displayOptions();
     }
     public static void withdraw(Scanner input){
+        System.out.print("Enter account number : ");
+        int accountNum = input.nextInt();
+        input.nextLine();
+
+        for(User user : people){
+            if(user.getId() == accountNum){
+                System.out.print("Enter amount to withdraw : ");
+                float withdrawAmount = input.nextFloat();
+                input.nextLine();
+
+                if(withdrawAmount >= 0){
+                    user.withdraw(withdrawAmount);
+                }
+            }else{
+                System.out.println("Invalid Account Number. Please Try Again.\n");
+                System.out.println("----------------------------------------------");
+                displayOptions();
+            }
+        }
+
+
         System.out.println("----------------------------------------------");
         System.out.println("\n");
         displayOptions();
     }
     public static void checkBal(Scanner input){
+        System.out.print("Enter account number : ");
+        int accountNum = input.nextInt();
+        input.nextLine();
 
-
-
+        for(User user : people){
+            if(user.getId() == accountNum){
+                user.currBal();
+            }else{
+                System.out.println("Invalid Account Number. Please Try Again.\n");
+                System.out.println("----------------------------------------------");
+                displayOptions();
+            }
+        }
 
         System.out.println("----------------------------------------------");
         System.out.println("\n");
